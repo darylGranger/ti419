@@ -1,5 +1,6 @@
 //TODO: put the li creation and appending code in it's own function.
 //TODO: put this on git hub
+//TODO: strip out the extraneous boilerplate content - especially in the html.
 
 
 
