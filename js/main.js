@@ -1,6 +1,6 @@
 //TODO: put the li creation and appending code in it's own function.
 //todo: consider not pushing to a new array, and just append to a new ul for each player.
-//TODO: put this on git hub
+
 //TODO: strip out the extraneous boilerplate content - especially in the html.
 
 
@@ -26,7 +26,7 @@ const ALL_RACES = [
 ]
 
 const numberOfPlayers = document.getElementById('numberOfPlayers');
-const numberOfRaceChoices = document.getElementById('numberOfRaceChoices');
+const numberOfRaceChoices = document.getElementById('numberOfRaceChoices');``
 const generateButton = document.getElementById('generateButton');
 const outputUl = document.getElementById('outputUl')
 
