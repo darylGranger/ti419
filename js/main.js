@@ -1,5 +1,5 @@
-//TODO: put the li creation and appending code in it's own function.
-//todo: consider not pushing to a new array, and just append to a new ul for each player.
+
+
 
 //TODO: strip out the extraneous boilerplate content - especially in the html.
 
@@ -26,9 +26,9 @@ const ALL_RACES = [
 ]
 
 const numberOfPlayers = document.getElementById('numberOfPlayers');
-const numberOfRaceChoices = document.getElementById('numberOfRaceChoices');``
+const numberOfRaceChoices = document.getElementById('numberOfRaceChoices'); ``
 const generateButton = document.getElementById('generateButton');
-const outputUl = document.getElementById('outputUl')
+const outputDiv = document.getElementById('outputDiv')
 
 var raceMaxChecker = () => {
     if (numberOfPlayers.value * numberOfRaceChoices.value <= ALL_RACES.length) {
@@ -38,16 +38,16 @@ var raceMaxChecker = () => {
 
 const packageGenerator = () => {
     //clear out the output area 
-    outputUl.innerHTML = ""
+    outputDiv.innerHTML = ""
     //make sure that there are enough races to go around.
     if (!raceMaxChecker()) {
         let newLi = document.createElement("li");
         let newText = document.createTextNode(`Too many races requested for that many players.`);
         newLi.appendChild(newText);
-        outputUl.appendChild(newLi);
+        outputLi.appendChild(newLi);
         return;
     }
-   
+
     //------------------------------------------------------------------------------
     //Package generation portion of this function
     //------------------------------------------------------------------------------
@@ -60,18 +60,27 @@ const packageGenerator = () => {
 
 
     for (var i = 1; i <= numberOfPlayers.value; i++) {  //loop for number of players
-        let playerRaceOptions = [];
+        let newPlayer = document.createTextNode(`Player ${i}'s Options`)
+        let newHeader = document.createElement('h2');
+        let playerRaceOptions = document.createElement('ul');
+        newHeader.appendChild(newPlayer);
+        outputDiv.appendChild(newHeader);
+        outputDiv.appendChild(playerRaceOptions);
+
         for (var p = 1; p <= numberOfRaceChoices.value; p++) { //loop for each player's race options
             let selectedRaceIndex = Math.floor(Math.random() * activeRacesArray.length);
-            playerRaceOptions.push(activeRacesArray[selectedRaceIndex]);
+            var raceToAddToOptions = activeRacesArray[selectedRaceIndex];
+            let newLi = document.createElement("li");
+            let raceText = document.createTextNode(raceToAddToOptions)
+            newLi.appendChild(raceText);
+            let ulList = document.getElementsByTagName('ul');
+            let currentUl=ulList[ulList.length -1];
+            currentUl.appendChild(newLi);
+
             activeRacesArray.splice(selectedRaceIndex, 1);
         }
 
-        //displays info on the page
-        let newLi = document.createElement("li");
-        let newText = document.createTextNode(`Player ${i}'s ${optionsOrRace} - ${playerRaceOptions}`);
-        newLi.appendChild(newText);
-        outputUl.appendChild(newLi);
+
 
     }
 }

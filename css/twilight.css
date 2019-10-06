@@ -1,3 +1,7 @@
+body {
+    padding: 5px;
+}
+
 input {
     width: 40px;
 }
@@ -17,4 +21,8 @@ input:invalid {
 
   button {
       margin-left: 15px;
+  }
+
+  main {
+      width: 90%;
   }
