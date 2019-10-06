@@ -41,10 +41,10 @@ const packageGenerator = () => {
     outputDiv.innerHTML = ""
     //make sure that there are enough races to go around.
     if (!raceMaxChecker()) {
-        let newLi = document.createElement("li");
-        let newText = document.createTextNode(`Too many races requested for that many players.`);
-        newLi.appendChild(newText);
-        outputLi.appendChild(newLi);
+        let newP = document.createElement("p");
+        let newText = document.createTextNode(`Too many races requested for that many players.  Please reduce player or race option count.`);
+        newP.appendChild(newText);
+        outputDiv.appendChild(newP);
         return;
     }
 
@@ -52,15 +52,15 @@ const packageGenerator = () => {
     //Package generation portion of this function
     //------------------------------------------------------------------------------
     const activeRacesArray = [...ALL_RACES];
-    let optionsOrRace = "options"
+    let optionsOrRace = "Race Options"
 
     if (numberOfRaceChoices.value === "1") {
-        optionsOrRace = "race"
+        optionsOrRace = "Race"
     }
 
 
     for (var i = 1; i <= numberOfPlayers.value; i++) {  //loop for number of players
-        let newPlayer = document.createTextNode(`Player ${i}'s Options`)
+        let newPlayer = document.createTextNode(`Player ${i}'s ${optionsOrRace}`)
         let newHeader = document.createElement('h2');
         let playerRaceOptions = document.createElement('ul');
         newHeader.appendChild(newPlayer);
