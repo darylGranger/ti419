@@ -1,6 +1,6 @@
 
-
-
+//Todo: remove randomization from listing unused Races.  
+//Todo: make it an option to display unused races. -- possible unessecary option
 //TODO: strip out the extraneous boilerplate content - especially in the html.
 
 
@@ -62,14 +62,14 @@ const packageGenerator = () => {
     for (var i = 1; i <= numberOfPlayers.value; i++) {  //loop for number of players
         let newPlayer = document.createTextNode(`Player ${i}'s ${optionsOrRace}`)
         let newHeader = document.createElement('h2');
-        let playerRaceOptions = document.createElement('ul');
+        let unusedRacesUl = document.createElement('ul');
         newHeader.appendChild(newPlayer);
         outputDiv.appendChild(newHeader);
-        outputDiv.appendChild(playerRaceOptions);
+        outputDiv.appendChild(unusedRacesUl);
 
         for (var p = 1; p <= numberOfRaceChoices.value; p++) { //loop for each player's race options
-            let selectedRaceIndex = Math.floor(Math.random() * activeRacesArray.length);
-            var raceToAddToOptions = activeRacesArray[selectedRaceIndex];
+            let activeRaceIndex = Math.floor(Math.random() * activeRacesArray.length);
+            var raceToAddToOptions = activeRacesArray[activeRaceIndex];
             let newLi = document.createElement("li");
             let raceText = document.createTextNode(raceToAddToOptions)
             newLi.appendChild(raceText);
@@ -77,11 +77,34 @@ const packageGenerator = () => {
             let currentUl=ulList[ulList.length -1];
             currentUl.appendChild(newLi);
 
-            activeRacesArray.splice(selectedRaceIndex, 1);
+            activeRacesArray.splice(activeRaceIndex, 1);
         }
 
 
 
+    }
+
+    //display unused races
+    let unusedRaceHeader = document.createTextNode(`Races not in this game`)
+    let newHeaderForUnusedRaces = document.createElement('h2');
+    let unusedRacesUl = document.createElement('ul');
+    newHeaderForUnusedRaces.appendChild(unusedRaceHeader);
+    outputDiv.appendChild(newHeaderForUnusedRaces);
+    outputDiv.appendChild(unusedRacesUl);
+
+
+    //todo: I dont't need to do any randomization here.  I just need to spit them all out in an li.  
+    for (var r = 0; r <=activeRacesArray.length; r++) {  
+        let activeRaceIndex = Math.floor(Math.random() * activeRacesArray.length);
+        var unusedRaceToAddToOutput = activeRacesArray[activeRaceIndex];
+        let newLi = document.createElement("li");
+        let raceText = document.createTextNode(unusedRaceToAddToOutput)
+        newLi.appendChild(raceText);
+        let ulList = document.getElementsByTagName('ul');
+        let currentUl=ulList[ulList.length -1];
+        currentUl.appendChild(newLi);
+
+        activeRacesArray.splice(activeRaceIndex, 1)
     }
 }
 generateButton.addEventListener('click', packageGenerator);
