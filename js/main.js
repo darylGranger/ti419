@@ -1,6 +1,5 @@
 
-//Todo: remove randomization from listing unused Races.  
-//Todo: make it an option to display unused races. -- possible unessecary option
+
 //TODO: strip out the extraneous boilerplate content - especially in the html.
 
 
@@ -84,7 +83,7 @@ const packageGenerator = () => {
 
     }
 
-    //display unused races
+    // //display unused races
     let unusedRaceHeader = document.createTextNode(`Races not in this game`)
     let newHeaderForUnusedRaces = document.createElement('h2');
     let unusedRacesUl = document.createElement('ul');
@@ -93,10 +92,9 @@ const packageGenerator = () => {
     outputDiv.appendChild(unusedRacesUl);
 
 
-    //todo: I dont't need to do any randomization here.  I just need to spit them all out in an li.  
-    for (var r = 0; r <=activeRacesArray.length; r++) {  
-        let activeRaceIndex = Math.floor(Math.random() * activeRacesArray.length);
-        var unusedRaceToAddToOutput = activeRacesArray[activeRaceIndex];
+    while (activeRacesArray.length) {  
+        
+        var unusedRaceToAddToOutput = activeRacesArray[0];
         let newLi = document.createElement("li");
         let raceText = document.createTextNode(unusedRaceToAddToOutput)
         newLi.appendChild(raceText);
@@ -104,7 +102,7 @@ const packageGenerator = () => {
         let currentUl=ulList[ulList.length -1];
         currentUl.appendChild(newLi);
 
-        activeRacesArray.splice(activeRaceIndex, 1)
+        activeRacesArray.splice(0, 1)
     }
 }
 generateButton.addEventListener('click', packageGenerator);
