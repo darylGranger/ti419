@@ -2,7 +2,7 @@
 
 //TODO: strip out the extraneous boilerplate content - especially in the html.
 
-alert('Here's the branch)
+
 
 const ALL_RACES = [
     "Emirates of Hacan",
