@@ -1,6 +1,5 @@
 
 
-//TODO: strip out the extraneous boilerplate content - especially in the html.
 
 
 

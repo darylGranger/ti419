@@ -30,6 +30,14 @@ input:invalid {
   main {
       width: 90%;
   }
+
+  h2 {
+      margin-bottom: 0px;
+  }
+
+  ul {
+      margin-top: 5px;
+  }
  
 
  
