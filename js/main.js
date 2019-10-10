@@ -1,5 +1,9 @@
 
 
+//todo: integrate vue for generated output
+//todo: uss CSS grid for the output.
+//todo: review js for clarity 
+//todo: dry out the js
 
 
 
@@ -28,15 +32,19 @@ const numberOfRaceChoices = document.getElementById('numberOfRaceChoices'); ``
 const generateButton = document.getElementById('generateButton');
 const outputDiv = document.getElementById('outputDiv')
 
-var raceMaxChecker = () => {
+const raceMaxChecker = () => {
     if (numberOfPlayers.value * numberOfRaceChoices.value <= ALL_RACES.length) {
         return true;
     }
 }
 
-const packageGenerator = () => {
-    //clear out the output area 
+//empties the output div
+const outputClearer = () => {
     outputDiv.innerHTML = ""
+}
+
+const packageGenerator = () => {
+    outputDiv();
     //make sure that there are enough races to go around.
     if (!raceMaxChecker()) {
         let newP = document.createElement("p");
@@ -45,7 +53,6 @@ const packageGenerator = () => {
         outputDiv.appendChild(newP);
         return;
     }
-
     //------------------------------------------------------------------------------
     //Package generation portion of this function
     //------------------------------------------------------------------------------
@@ -55,7 +62,6 @@ const packageGenerator = () => {
     if (numberOfRaceChoices.value === "1") {
         optionsOrRace = "Race"
     }
-
 
     for (var i = 1; i <= numberOfPlayers.value; i++) {  //loop for number of players
         let newPlayer = document.createTextNode(`Player ${i}'s ${optionsOrRace}`)
@@ -91,8 +97,7 @@ const packageGenerator = () => {
     outputDiv.appendChild(unusedRacesUl);
 
 
-    while (activeRacesArray.length) {  
-        
+    while (activeRacesArray.length) {       
         var unusedRaceToAddToOutput = activeRacesArray[0];
         let newLi = document.createElement("li");
         let raceText = document.createTextNode(unusedRaceToAddToOutput)
