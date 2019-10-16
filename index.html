@@ -20,35 +20,40 @@
 </head>
 
 <body>
- 
-  <header>
-    <h1>TI4 Setup Wizard</h1>
-  </header>
-  <main>
+  <div id="app">
+
     <header>
-      <p>Generate your groups of starting race options for a game of TI4. Keep in mind that there are 17 races available, and requests for more than 17 starting races will not be generated.<strong>Assign each player a number prior to pressing generate.</strong></p>
-     
+      <h1>TI4 Setup Wizard</h1>
     </header>
-    <section>
+    <main>
+      <header>
+        <p>Generate your groups of starting race options for a game of TI4. Keep in mind that there are 17 races
+          available, and requests for more than 17 starting races will not be generated.<strong>  Assign each player a
+            number prior to pressing generate.</strong></p>
+            <p>{{ test }}</p>
+      </header>
+      <section>
 
-      <label for="numberOfPlayers">Number of Players?</label>
-      <input type="number" min="3" max="6" id="numberOfPlayers" placeholder="3-6" required>
-      <label for="raceOptions">Number of race options/player?</label>
-      <input type="number" placeholder="1-4" min="1" max="5" id="numberOfRaceChoices" required>
-      <button id="generateButton">GENERATE</button>
+        <label for="numberOfPlayers">Number of Players?</label>
+        <input v-model="playerCount" type="number" min="3" max="6" id="numberOfPlayers" placeholder="3-6" required>
+        <label for="raceOptions">Number of race options/player?</label>
+        <input v-model="raceCount" type="number" placeholder="1-4" min="1" max="5" id="numberOfRaceChoices" required>
+        <button v-bind:disabled="infoGathered" id="generateButton">GENERATE</button>
 
-    </section>
-    <section id="output">
-      <div id="outputDiv"></div>
-    </section>
+      </section>
+      <section id="output">
+        <div id="outputDiv"></div>
+      </section>
 
-  </main>
+    </main>
 
-  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+    <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/ti4Vue.js"></script>
 
- 
+  </div>
 </body>
 
 </html>
