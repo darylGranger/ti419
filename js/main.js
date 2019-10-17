@@ -44,7 +44,7 @@ const outputClearer = () => {
 }
 
 const packageGenerator = () => {
-    outputDiv();
+    outputClearer();
     //make sure that there are enough races to go around.
     if (!raceMaxChecker()) {
         let newP = document.createElement("p");
